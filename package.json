@@ -13,6 +13,11 @@
   "packageManager": "pnpm@6.23.0+",
   "main": "dist/plugin/index.js",
   "types": "dist/plugin/index.d.ts",
+  "files": [
+    "dist",
+    "plugin",
+    "assets"
+  ],
   "scripts": {
     "dev": "cls && vite",
     "build": "node scripts/clear.js && tsc -p tsconfig.build.json",
