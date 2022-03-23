@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+
+    "target": "ESNext",
+    "module": "ESNext",
+    "declaration": true,
+    "noEmit": true,
+    "importHelpers": false,
+    "isolatedModules": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "preserveSymlinks": true,
+
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["playground", "plugin"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

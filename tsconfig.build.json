@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": ["plugin"]
+}
