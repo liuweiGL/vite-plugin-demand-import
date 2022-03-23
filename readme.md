@@ -80,8 +80,11 @@ export type DemandImportOptions = {
 ## 效果
 
 <details>
-<summary>对比</summary>
+<summary>对比</summary>   
+
 ![before.png](./assets/before.png)
+
+---
 
 ![after.png](./assets/after.png)
 
