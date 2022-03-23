@@ -10,7 +10,7 @@ pnpm add vite-plugin-demand-import -D
 
 ```ts
 import { defineConfig } from 'vite'
-import demandImport from './plugin/index'
+import demandImport from 'vite-plugin-demand-import'
 
 export default defineConfig({
   plugins: [
@@ -25,13 +25,26 @@ export default defineConfig({
   ]
 })
 
-/////////// 效果 ////////////
+/////////// 编译结果 ////////////
 import { Button } from 'antd-mobile'
 
 ↓ ↓ ↓ ↓ ↓ ↓
 
 import Button from 'antd-mobile/es/components/button'
 ```
+
+## 优化效果
+
+<details>
+<summary>对比</summary>   
+
+![before.png](./assets/before.png)
+
+---
+
+![after.png](./assets/after.png)
+
+</details>
 
 ## 接口
 
@@ -76,19 +89,6 @@ export type DemandImportOptions = {
   }
 }
 ```
-
-## 效果
-
-<details>
-<summary>对比</summary>   
-
-![before.png](./assets/before.png)
-
----
-
-![after.png](./assets/after.png)
-
-</details>
 
 ## Why
 
@@ -169,7 +169,7 @@ export const routes = [
 网上关于这个特性的文章很多了，这里只大概说一下我知道的几种方式：
 
 1. esm 规范的 export & import 是静态绑定的，rollup 编译时可以分析出哪个模块是用到的哪个模块是没用到的，只要类库的 package.json 申明了 `sideEffects: false` 便可以自动 tree sharking。
-2. commonjs 规范的 require 是动态的，所以 tree sharking 是非常困难的。rollup 处理 commonjs 模块时依赖 `@rollup/plugin-commonjs` 插件进行 commonjs 到 esm 的转换，这个插件默认的行为是：如果模块使用 `exports.xxx` 导出会 tree sharking，而 `modules.exports` 导出则不会。
+2. commonjs 规范的 require 是动态的，所以 tree sharking 是非常困难的。rollup 处理 commonjs 模块时依赖 `@rollup/plugin-commonjs` 插件进行 commonjs 到 esm 的转换。这个插件默认的行为是：如果模块使用 `exports.xxx` 导出会 tree sharking，而 `modules.exports` 导出则不会。
 3. 手动指定包下面的具体模块，比如使用 `import round from 'lodash/round'` 代替 `import { round } from 'lodash'`。
 
 关于这块可以使用 `lodash` 跟 `lodash-es` 进行测试，前者不会 tree sharking 而后者会。
@@ -326,6 +326,7 @@ import { Button } from 'antd-mobile'
 
 <details>
  <summary>index.js</summary>
+ <pre>
 import './global';
 export { setDefaultConfig } from './components/config-provider';
 export { default as ActionSheet } from './components/action-sheet';
@@ -405,6 +406,7 @@ export { default as Toast } from './components/toast';
 export { default as TreeSelect } from './components/tree-select';
 export { default as VirtualInput } from './components/virtual-input';
 export { default as WaterMark } from './components/water-mark';
+</pre>
 </details>
 
 第三步，处理 _index.js_ 文件中的导入。因为 `button` 被用到了肯定会加载，而其他组件因为没有用到会被 tree sharking 掉。但是这里存在一个问题：每个组件都引入了样式文件，而 css 类型是被定义成 “有副作用” 的（这个没错）。这就导致组件的 js 文件虽然不会导入，但这个组件所引用的样式会被导入，最后就是整个库的 css 全部被导入了。
