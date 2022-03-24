@@ -94,13 +94,13 @@ export type DemandImportOptions = {
 
 在使用各种 “xxx-import” 插件之前我们需要先区分几个概念：
 
-1. tree sharking：中文 “摇树”，指对没有使用到的代码在 `编译阶段` 进行删减。
+1. tree shaking：中文 “摇树”，指对没有使用到的代码在 `编译阶段` 进行删减。
 2. 自动导入：根据配置的策略在 `编译阶段` 自动插入导入语句。
 3. 按需加载：指在 `运行时` 动态返回用户当前访问的资源。
 
 简单的代码说明：
 
-1. tree sharking:
+1. tree shaking:
 
 ```ts
 // a.js
@@ -159,20 +159,20 @@ export const routes = [
 ]
 ```
 
-需要注意的是 **日常表述中** “按需加载” 在不同的场景下跟 “tree sharking” 或者 “自动导入” 是等价的。比如：
+需要注意的是 **日常表述中** “按需加载” 在不同的场景下跟 “tree shaking” 或者 “自动导入” 是等价的。比如：
 
-1. 我们使用 lodash 库时期望的是 “tree sharking” 行为，但是我们也可以说成 “按需加载” lodash。
+1. 我们使用 lodash 库时期望的是 “tree shaking” 行为，但是我们也可以说成 “按需加载” lodash。
 2. 我们在使用 UI 库时期望的是 “自动导入” 行为，但是我们也可以说成 “按需加载” 样式。
 
-## tree sharking
+## tree shaking
 
 网上关于这个特性的文章很多了，这里只大概说一下我知道的几种方式：
 
-1. esm 规范的 export & import 是静态绑定的，rollup 编译时可以分析出哪个模块是用到的哪个模块是没用到的，只要类库的 package.json 申明了 `sideEffects: false` 便可以自动 tree sharking。
-2. commonjs 规范的 require 是动态的，所以 tree sharking 是非常困难的。rollup 处理 commonjs 模块时依赖 `@rollup/plugin-commonjs` 插件进行 commonjs 到 esm 的转换。这个插件默认的行为是：如果模块使用 `exports.xxx` 导出会 tree sharking，而 `modules.exports` 导出则不会。
+1. esm 规范的 export & import 是静态绑定的，rollup 编译时可以分析出哪个模块是用到的哪个模块是没用到的，只要类库的 package.json 申明了 `sideEffects: false` 便可以自动 tree shaking。
+2. commonjs 规范的 require 是动态的，所以 tree shaking 是非常困难的。rollup 处理 commonjs 模块时依赖 `@rollup/plugin-commonjs` 插件进行 commonjs 到 esm 的转换。这个插件默认的行为是：如果模块使用 `exports.xxx` 导出会 tree shaking，而 `modules.exports` 导出则不会。
 3. 手动指定包下面的具体模块，比如使用 `import round from 'lodash/round'` 代替 `import { round } from 'lodash'`。
 
-关于这块可以使用 `lodash` 跟 `lodash-es` 进行测试，前者不会 tree sharking 而后者会。
+关于这块可以使用 `lodash` 跟 `lodash-es` 进行测试，前者不会 tree shaking 而后者会。
 
 ### 静态&动态导入的简单解释
 
@@ -200,7 +200,7 @@ if (flag) {
 
 antd 官方出品，感觉可以算这个领域最知名的类库吧，功能非常齐全。比如：
 
-1. tree sharking: 因为当时还是 webpack 的天下，大多数的包也都是 commonjs 规范的，所以当时一般都是使用第三种方式来实现该特性。对应的配置为：
+1. tree shaking: 因为当时还是 webpack 的天下，大多数的包也都是 commonjs 规范的，所以当时一般都是使用第三种方式来实现该特性。对应的配置为：
 
 ```ts
 // .babelrc
@@ -250,7 +250,7 @@ require('antd/lib/button/style'); // 自动插入了导入语句
 
 库如其名，这个是 vite 框架的插件。
 
-因为 vite 是基于 rollup 构建的，js 代码一般都可以自动 tree sharking，所以只需要处理样式文件的 “自动导入” 就好了：
+因为 vite 是基于 rollup 构建的，js 代码一般都可以自动 tree shaking，所以只需要处理样式文件的 “自动导入” 就好了：
 
 ```ts
 import { ElButton } from 'element-plus';
@@ -269,7 +269,7 @@ import 'element-plus/lib/theme-chalk/el-button.css';
 值得一提的是作者非常细心的区分了开发跟正式环境:
 
 1. 开发环境中 vite 的 optimize 不会因为新的组件导入而刷新。
-2. 可能是怕有些类库没有配置 `sideEffects` 导致 tree sharking 不生效？
+2. 可能是怕有些类库没有配置 `sideEffects` 导致 tree shaking 不生效？
 
 ## 我遇到的问题
 
@@ -409,7 +409,7 @@ export { default as WaterMark } from './components/water-mark';
 </pre>
 </details>
 
-第三步，处理 _index.js_ 文件中的导入。因为 `button` 被用到了肯定会加载，而其他组件因为没有用到会被 tree sharking 掉。但是这里存在一个问题：每个组件都引入了样式文件，而 css 类型是被定义成 “有副作用” 的（这个没错）。这就导致组件的 js 文件虽然不会导入，但这个组件所引用的样式会被导入，最后就是整个库的 css 全部被导入了。
+第三步，处理 _index.js_ 文件中的导入。因为 `button` 被用到了肯定会加载，而其他组件因为没有用到会被 tree shaking 掉。但是这里存在一个问题：每个组件都引入了样式文件，而 css 类型是被定义成 “有副作用” 的（这个没错）。这就导致组件的 js 文件虽然不会导入，但这个组件所引用的样式会被导入，最后就是整个库的 css 全部被导入了。
 
 总所皆知，vite 的性能由传统的 bundle 处理能力转向了浏览器处理请求的效率：
 
