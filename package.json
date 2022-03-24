@@ -43,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@vitejs/plugin-react": "^1.2.0",
-    "antd-mobile": "^5.7.2",
+    "antd-mobile": "^5.8.0",
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "react": "^17.0.2",

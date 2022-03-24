@@ -14,7 +14,7 @@ specifiers:
   '@vitejs/plugin-react': ^1.2.0
   acorn: ^8.7.0
   acorn-walk: ^8.2.0
-  antd-mobile: ^5.7.2
+  antd-mobile: ^5.8.0
   astring: ^1.8.1
   eslint: ^8.11.0
   eslint-plugin-import: ^2.25.4
@@ -44,7 +44,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.16.0_3fed250b11519414a4c7d52468dd6bf5
   '@typescript-eslint/parser': 5.16.0_eslint@8.11.0+typescript@4.6.2
   '@vitejs/plugin-react': 1.2.0
-  antd-mobile: 5.7.2_react-dom@17.0.2+react@17.0.2
+  antd-mobile: 5.8.0_react-dom@17.0.2+react@17.0.2
   eslint: 8.11.0
   eslint-plugin-import: 2.25.4_eslint@8.11.0
   react: 17.0.2
@@ -1043,8 +1043,8 @@ packages:
     resolution: {integrity: sha512-YGsiEDCPUDz3SzfXi6gLZn/HpeSMW+jgPc4qiYUr1fSopg3hkUie2TnooJdExgfiETHefH3Ggs58He0OVfegLA==}
     dev: true
 
-  /antd-mobile/5.7.2_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-WlkXC7PUWVQkFroaFZZx3Kun7NKZ3QfHriCvDt+XCYj9d6ciwKVw9n+ZvEJu49U9tTEm1UjXaKdLNMCgWpjSsw==}
+  /antd-mobile/5.8.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-uXrC0RAirXJsGc73Ej3S//E/CefXFTMREerv27kxqAjg+ftuZIvr3P5bE9ozZZWn8+3U0GGkcFobYfhBd+z7sA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0
     dependencies:
