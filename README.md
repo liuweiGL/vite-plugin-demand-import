@@ -2,6 +2,8 @@
 
 为 **带有副作用** 的库提供 “按需加载” 功能。
 
+**[English Document](./README_EN.md)**
+
 ## 快速开始
 
 ```shell
