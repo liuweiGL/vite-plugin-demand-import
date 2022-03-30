@@ -94,31 +94,33 @@ const demandImport = ({
           const importedNames = node.specifiers
             .map(item => {
               return item.type === 'ImportSpecifier'
-                ? item.imported.name
+                ? {
+                    // imported name 支持别名
+                    identifier: item.local.name,
+                    // module name
+                    name: item.imported.name
+                  }
                 : undefined
             })
             .filter(Boolean)
 
           const importStatements = importedNames
-            .map(name => {
+            .map(({ name, identifier }) => {
               const declarations = []
               const formattedName = namingFormatter?.(name) ?? name
 
               if (resolver.js)
                 declarations.push(
                   createImportDeclaration(
-                    name,
                     resolver.js({ name: formattedName, file: id }),
-                    false
+                    identifier
                   )
                 )
 
               if (resolver.style)
                 declarations.push(
                   createImportDeclaration(
-                    name,
-                    resolver.style({ name: formattedName, file: id }),
-                    true
+                    resolver.style({ name: formattedName, file: id })
                   )
                 )
 

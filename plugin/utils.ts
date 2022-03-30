@@ -15,24 +15,20 @@ export const replaceNode = (list: any[], current: any, replacements: any[]) => {
   }
 }
 
-export const createImportDeclaration = (
-  name: string,
-  path: string,
-  sideEffect: boolean
-) => {
+export const createImportDeclaration = (path: string, identifier?: string) => {
   return {
     type: 'ImportDeclaration',
-    specifiers: sideEffect
-      ? []
-      : [
+    specifiers: identifier
+      ? [
           {
             type: 'ImportDefaultSpecifier',
             local: {
               type: 'Identifier',
-              name: name
+              name: identifier
             }
           }
-        ],
+        ]
+      : [],
     source: {
       type: 'Literal',
       value: path,

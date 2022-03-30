@@ -1,9 +1,9 @@
-import { Button, ErrorBlock } from 'antd-mobile'
+import { Button as AntdButton, ErrorBlock } from 'antd-mobile'
 
 export default () => {
   return (
     <ErrorBlock>
-      <Button></Button>
+      <AntdButton></AntdButton>
     </ErrorBlock>
   )
 }
