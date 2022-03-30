@@ -1,10 +1,9 @@
+## [📙 中文文档](./README.md)
 ## Vite Plugin Demand Import
 
-Provides "load-on-demand" functionality for libraries with side effects.
+Provides "import-on-demand" functionality for the library with side effects.
 
-**[中文文档](./README.md)**
-
-## quick start
+## Quick Start
 
 ```shell
 pnpm add vite-plugin-demand-import -D
@@ -48,7 +47,7 @@ import Button from 'antd-mobile/es/components/button'
 
 </details>
 
-## interface
+## Interface
 
 ```ts
 export type ResolverOptions = {
