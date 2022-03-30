@@ -1,8 +1,11 @@
+
+[![Release](https://github.com/liuweiGL/vite-plugin-demand-import/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/liuweiGL/vite-plugin-demand-import/actions/workflows/release.yml)
+[![npm version](https://badge.fury.io/js/vite-plugin-demand-import.svg)](https://badge.fury.io/js/vite-plugin-demand-import)
 ## Vite Plugin Demand Import
 
 为 **带有副作用** 的库提供 “按需加载” 功能。
 
-**[English Document](./README_EN.md)**
+**[English Document](./README_EN.md)** 
 
 ## 快速开始
 
