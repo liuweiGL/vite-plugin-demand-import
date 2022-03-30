@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - plugin
+      - 'plugin/**'
 env:
   CI: true
 jobs:
@@ -24,10 +24,10 @@ jobs:
           npm i pnpm@latest -g
           pnpm config set store-dir $PNPM_CACHE_FOLDER
           pnpm i
-      - name: Lint
+      - name: Lint code
         run: |
           pnpm run lint
-      - name: Release
+      - name: Release npm
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
