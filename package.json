@@ -13,6 +13,10 @@
   "packageManager": "pnpm@6.23.0+",
   "main": "dist/plugin/index.js",
   "types": "dist/plugin/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuweiGL/vite-plugin-demand-import"
+  },
   "files": [
     "dist",
     "plugin",
