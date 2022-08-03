@@ -416,7 +416,7 @@ export { default as WaterMark } from './components/water-mark';
 
 第三步，处理 _index.js_ 文件中的导入。因为 `button` 被用到了肯定会加载，而其他组件因为没有用到会被 tree shaking 掉。但是这里存在一个问题：每个组件都引入了样式文件，而 css 类型是被定义成 “有副作用” 的（这个没错）。这就导致组件的 js 文件虽然不会导入，但这个组件所引用的样式会被导入，最后就是整个库的 css 全部被导入了。
 
-总所皆知，vite 的性能由传统的 bundle 处理能力转向了浏览器处理请求的效率：
+众所皆知，vite 的性能由传统的 bundle 处理能力转向了浏览器处理请求的效率：
 
 1. 提高浏览器的并发量：开启 vite 的 https 服务。
 2. 浏览器缓存：因为 vite 内置的 https 是自签名证书通不过浏览器检测，本地缓存是不会生效的。这个时候可以使用我的 [vite-plugin-mkcert](https://github.com/liuweiGL/vite-plugin-mkcert) 插件为 https 提供本地证书支持。
