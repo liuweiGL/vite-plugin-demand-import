@@ -43,11 +43,11 @@ import Button from 'antd-mobile/es/components/button'
 <details>
 <summary>对比</summary>   
 
-![before.png](./assets/before.png)
+![before.png](assets/before.png)
 
 ---
 
-![after.png](./assets/after.png)
+![after.png](assets/after.png)
 
 </details>
 
