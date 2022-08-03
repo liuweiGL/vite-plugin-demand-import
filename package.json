@@ -4,9 +4,8 @@
   "description": "Demand import for the library that has side effects",
   "keywords": [
     "vite-plugin",
-    "vite-plugin-import",
-    "vite-plugin-demand",
-    "demand import"
+    "vite-plugin-demand-import",
+    "vite plugin demand import"
   ],
   "author": "liuweigl",
   "license": "MIT",
