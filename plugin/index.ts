@@ -1,4 +1,4 @@
-import { Plugin } from 'vite'
+import { type PluginOption } from 'vite'
 
 import { createFilter } from '@rollup/pluginutils'
 import * as walk from 'acorn-walk'
@@ -71,7 +71,7 @@ const demandImport = ({
   lib,
   resolver,
   namingStyle = 'kebab-case'
-}: DemandImportOptions): Plugin => {
+}: DemandImportOptions): PluginOption => {
   const filter = createFilter(/\.(tsx?|jsx?)/, 'node_modules/**')
   const namingFormatter = NamingMap[namingStyle]
 
