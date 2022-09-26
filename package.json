@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-demand-import",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Demand import for the library that has side effects",
   "keywords": [
     "vite-plugin",
