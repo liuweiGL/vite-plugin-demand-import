@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 
 import react from '@vitejs/plugin-react'
 
-import demandImport from './plugin/index'
+import demandImport from '.'
 
 export default defineConfig({
   plugins: [

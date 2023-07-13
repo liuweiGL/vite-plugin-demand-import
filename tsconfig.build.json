@@ -2,9 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./dist",
-    "module": "CommonJS",
+    "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
+    "emitDeclarationOnly": true,
     "esModuleInterop": true
   },
   "include": ["plugin"]
