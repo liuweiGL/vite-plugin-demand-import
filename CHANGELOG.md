@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/liuweiGL/vite-plugin-demand-import/compare/v1.1.0...v1.1.1) (2023-07-13)
+
+
+### Bug Fixes
+
+* demandImport is not a function ([2bab067](https://github.com/liuweiGL/vite-plugin-demand-import/commit/2bab067e10f6c96c1e94553bd2e9b8d9973183d2)), closes [#3](https://github.com/liuweiGL/vite-plugin-demand-import/issues/3)
+
 # [1.1.0](https://github.com/liuweiGL/vite-plugin-demand-import/compare/v1.0.2...v1.1.0) (2022-09-26)
 
 
